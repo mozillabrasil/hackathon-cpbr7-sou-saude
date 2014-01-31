@@ -56,7 +56,8 @@ var AppDataBase = new function () {
                 objectStore.add(sample);
             }
         }
-    }
+    };
+    
     _db = function() {
         return db;
     };
