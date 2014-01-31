@@ -15,17 +15,35 @@ var ExcerciseListHelper = {
 var WorkoutForm =  {
     workout: null,
     maxExerciseIndex: -1,
+    _save: function() {
+        var self = this;
+        if ( App.isSaving() ) {
+            setTimeout(
+                function() {
+                    self._save();
+                },
+                2000
+            );
+            return;
+        }
+        if ( self.workout == null ) {
+            return;
+        }
+        App.saveWorkout(self.workout);
+    },
     _addExercise: function() {
+        var self = this;
         var exercise = new Exercise();
         var idx = parseInt(this.maxExerciseIndex) + 1;
         this.maxExerciseIndex = idx;
         this.workout.exercises[idx] = exercise;
         ExcerciseListHelper.add(idx, exercise);
-        App.saveWorkout(this.workout);
+        self._save();
     },
     _removeExercise: function(index) {
+        var self = this;
         delete this.workout.exercises[index];
-        App.saveWorkout(this.workout);
+        self._save();
     },
     show: function(workout) {
         this.workout = workout;
@@ -83,30 +101,30 @@ var WorkoutForm =  {
             var target = $(this).parent().parent().parent().parent();
             var index = $(target).attr('data-exercise-index');
             self.workout.exercises[index].name = $(this).val();
-            App.saveWorkout(self.workout);
+            self._save();
         });
 
         $('#form-save-workout').on('change', '.data-exercise-sets', function() {
             var target = $(this).parent().parent().parent().parent();
             var index = $(target).attr('data-exercise-index');
             self.workout.exercises[index].sets = $(this).val();
-            App.saveWorkout(self.workout);
+            self._save();
         });
 
         $('#form-save-workout').on('change', '.data-exercise-repetitions', function() {
             var target = $(this).parent().parent().parent().parent();
             var index = $(target).attr('data-exercise-index');            
             self.workout.exercises[index].repetitions = $(this).val();
-            App.saveWorkout(self.workout);
+            self._save();
         });
 
         $('#form-save-workout .data-workout-active').change(function() {
             self.workout.active = $(this).is(":checked") ? 1 : 0;
-            App.saveWorkout(self.workout);
+            self._save();
         });
         $('#form-save-workout .data-workout-name').change(function() {
             self.workout.name = $(this).val();
-            App.saveWorkout(self.workout);
+            self._save();
         });
     }
 };

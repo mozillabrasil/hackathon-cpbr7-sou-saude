@@ -1,5 +1,6 @@
 var App = new function(){
     var _workouts = [];
+    var _saving = false;
 
     var _listWorkouts = function() {
         _workouts = [];
@@ -25,14 +26,21 @@ var App = new function(){
         WorkoutHelper.showWorkingout(_workouts[id]);
     };
 
+    var _isSaving = function() {
+        return _saving == true;
+    }
+
     var _saveWorkout = function(workout) {
+        _saving = true;
         AppModel.save(
             workout,
             function(id) {
+                _saving = false;
                 workout.id = id;
                 _workouts[id] = workout;
             },
             function() {
+                _saving = false;
                 alert('Falha ao salvar o treino');
             }
         );
@@ -80,7 +88,8 @@ var App = new function(){
         listCurrentWorkouts: _listCurrentWorkouts,
         listWorkouts: _listWorkouts,        
         removeWorkout: _removeWorkout,
-        saveWorkout: _saveWorkout        
+        saveWorkout: _saveWorkout,
+        isSaving: _isSaving       
     }
 };
 $(document).ready(function(){
