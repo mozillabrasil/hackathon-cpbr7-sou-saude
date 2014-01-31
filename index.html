@@ -58,6 +58,25 @@
          #index {
             height: 100%;
          }
+         li.action-icon {
+          line-height: 30px;
+          font-size: 16px;
+          margin-bottom: 10px;
+          margin-top: 10px;
+          position: relative;
+          float: left;
+          background: rgba(0,0,0, 0.8);
+          content: "";
+          width: 30px;
+          height: 30px;
+          border-radius: 3px;
+          -moz-border-radius: 3px;
+          -webkit-border-radius: 3px;
+         }
+         
+         li.action-icon span {
+            visibility: hidden;
+         }
         </style>
     </head>
 <body role="application">
@@ -107,8 +126,8 @@
         <span class="icon icon-back">back</span>
       </a>
       <menu type="toolbar">
-          <a id="confirm-remove-workout" href="#">
-            <span class="icon icon-delete">[Remover]</span>
+          <a id="confirm-remove-workout" href="#">            
+            <span class="icon icon-close">back</span>
           </a>
       </menu>
       <h1>Cadastrar / alterar treino</h1>
@@ -177,7 +196,9 @@
     <li>
       <aside class="pack-end">
         <a href="#" data-workout-id="" class="edit-workout btn">
-          <p>Editar</p>
+          <ul class="icons">
+            <li class="action-icon compose"><span>Editar</span></li>
+          </ul>
         </a>
       </aside>
       <a href="#" class="do-workout" data-workout-id="">
@@ -227,7 +248,7 @@
         <p>
           <input class="data-exercise-repetitions" 
             type="text" placeholder="Repeticoes" required
-            pattern="[-A-Za-z0-9]*" 
+            pattern="[- A-Za-z0-9]*" 
             title="Repetições podem conter letras e numeros"
           />
           <button type="reset">Clear</button>
@@ -235,7 +256,7 @@
       </section>
     </fieldset>
     <div>
-      <button class="action-icon danger remove-exercise">Remover</button>
+      <button class="action-icon danger delete remove-exercise">Remover</button>
     </div>
   </div>
 </body>
