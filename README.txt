@@ -11,6 +11,11 @@ O App auxilia no seus treinos diários. Controlar os seus treinos podem ser uma 
 * Roda no Firefox OS
 * É livre, use, modifique, compartilhe
 
-## Licence
+## Contato
+E-mail: rochasmarcelo@gmail.com, contato@omarcelo.com.br
+Facebook: https://www.facebook.com/omarcelorocha
+Twitter: @mrcodex
+
+## Licença
 
 Copyright (c) 2014 Marcelo Rocha. Licensed under the MIT license.
