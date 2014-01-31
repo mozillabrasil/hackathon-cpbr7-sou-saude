@@ -16,6 +16,10 @@ E-mail: rochasmarcelo@gmail.com, contato@omarcelo.com.br
 Facebook: https://www.facebook.com/omarcelorocha
 Twitter: @mrcodex
 
+## Bibliotecas / Recursos adicionais
+ * jquery https://github.com/jquery/jquery
+ * Building blocks: http://buildingfirefoxos.com/
+
 ## Licença
 
 Copyright (c) 2014 Marcelo Rocha. Licensed under the MIT license.
