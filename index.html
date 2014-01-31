@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sou saúde</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width" />
+        <!-- Building blocks -->
+        <link rel="stylesheet" href="style/action_menu.css">
+        <link rel="stylesheet" href="style/buttons.css">
+        <link rel="stylesheet" href="style/confirm.css">
+        <link rel="stylesheet" href="style/edit_mode.css">
+        <link rel="stylesheet" href="style/headers.css">
+        <link rel="stylesheet" href="style/input_areas.css">
+        <link rel="stylesheet" href="style/status.css">
+        <link rel="stylesheet" href="style/switches.css">
+        <link rel="stylesheet" href="style/drawer.css">
+        <link rel="stylesheet" href="style/lists.css">
+        <link rel="stylesheet" href="style/progress_activity.css">
+        <link rel="stylesheet" href="style/scrolling.css">
+        <link rel="stylesheet" href="style/seekbars.css">
+        <link rel="stylesheet" href="style/tabs.css">
+        <link rel="stylesheet" href="style/toolbars.css">
+
+        <!-- Icons -->
+        <link rel="stylesheet" href="icons/styles/action_icons.css">
+        <link rel="stylesheet" href="icons/styles/media_icons.css">
+        <link rel="stylesheet" href="icons/styles/comms_icons.css">
+        <link rel="stylesheet" href="icons/styles/settings_icons.css">
+
+        <!-- Transitions -->
+        <link rel="stylesheet" href="transitions.css">
+
+        <!-- Util CSS: some extra tricks -->
+        <link rel="stylesheet" href="util.css">
+        <link rel="stylesheet" href="fonts.css">
+
+        <!-- Additional markup to make Building Blocks kind of cross browser -->
+        <link rel="stylesheet" href="cross_browser.css">
+
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <style>
+        #workout-list {
+          height: 100%;
+        }
+         [data-type="list"] li {
+            height: 8rem;
+         }
+         section.hide {
+           display:none;
+         }
+         .types-workout {
+            display: inline;
+         }
+         #index {
+            height: 100%;
+         }
+        </style>
+    </head>
+<body role="application">
+<section id="index" data-position="current">
+    <section data-type="sidebar">
+      <header>
+        <menu type="toolbar">
+          <a href="#">Voltar</a>
+        </menu>
+        <h1>Treinos</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a class="show-active-workouts" href="#">Ativos</a></li>
+          <li><a class="show-inactive-workouts" href="#">Inativos</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <section role="region" id="workout-list">
+      <header class="fixed">
+          <a href="#"><span class="icon icon-menu">Esconder</span></a>
+          <a href="#workout-list"><span class="icon icon-menu">Mostrar</span></a>
+          <menu type="toolbar">
+              <a id="new-workout" href="#">
+                <span class="icon icon-add">[Adicionar]</span>
+              </a>
+          </menu>
+          <h1>Sou Saúde - Treinos</h1>
+      </header>
+      <article data-type="list" class="content scrollable header">      
+          <div data-type="list" class="items active-items">
+            <header>Treinos ativos</header>
+            <div></div>
+          </div>
+          <div data-type="list" class="items inactive-items">
+            <header>Treinos inativos</header>
+            <div></div>
+          </div>
+      </article>
+  </section>
+  </section> <!-- end index -->
+
+<section class="hide" role="region" id="form-save-workout" data-position="right">
+    <header class="fixed">     
+      <a id="btn-input-form-back" href="#">
+        <span class="icon icon-back">back</span>
+      </a>
+      <menu type="toolbar">
+          <a id="confirm-remove-workout" href="#">
+            <span class="icon icon-delete">[Remover]</span>
+          </a>
+      </menu>
+      <h1>Cadastrar / alterar treino</h1>
+    </header>
+    <article class="content scrollable header">
+      <form>
+      	<p>          
+	      <label class="pack-switch">
+	        <input type="checkbox" 
+            value="1" class="data-workout-active" checked="checked"
+          />
+	        <span></span>
+	      </label>
+        </p>
+        <p>
+          <input type="text" class="data-workout-name" 
+          	placeholder="Nome" required="required"
+          />
+          <button type="reset">Clear</button>
+        </p>
+      <div class="list-exercise"></div>
+       
+      </form>
+       <div>
+       	<br />
+        	<button class="action-icon new recommend" id="add-exercise">
+            Adicionar exercicio
+          </button>
+       	</div>
+    </article>
+  </section>
+<section 
+    id="modal-confirm-remove-workout" data-position="back" 
+    class="hide fullscreen"
+>
+    <form role="dialog" data-type="confirm">
+      <section>
+        <h1>Confirmação</h1>
+        <p>Deseja realmente remover o treino?</p>
+      </section>
+      <menu>
+        <button>Cancelar</button>
+        <button class="danger" id="remove-workout">Remover</button>
+      </menu>
+    </form>
+  </section>
+
+  <section class="hide" role="region" id="working-out" data-position="right">
+    <header class="fixed">
+      <a id="btn-working-out-back" href="#">
+        <span class="icon icon-back">back</span>
+      </a>
+      <h1>Treinando</h1>
+    </header>
+    <article class="content scrollable header">
+      <section data-type="list">
+        <header>Treino: <span class="text-workout-name"></span></header>
+        <ul>
+        
+        </ul>
+      </section>
+    </article>
+  </section>
+
+  <div id="template-item-workout">
+    <li>
+      <aside class="pack-end">
+        <a href="#" data-workout-id="" class="edit-workout btn">
+          <p>Editar</p>
+        </a>
+      </aside>
+      <a href="#" class="do-workout" data-workout-id="">
+        <p class="text-workout-name"></p>
+        <p class="text-workout-last-date"></p>
+      </a>
+    </li>
+  </div>
+  <div id="template-text-exercise">
+    <li>
+      <a href="#">
+        <p class="text-exercise-name"></p>
+        <p class="text-exercise-sets"></p>
+        <p class="text-exercise-repetitions"></p>
+      </a>
+    </li>
+  </div>
+  <div id="template-form-exercise">
+    <header><h2>Exercicio</h2></header>
+    <fieldset>
+      <legend>Nome</legend>
+      <section>
+        <p>
+          <input class="data-exercise-name" 
+            type="text" placeholder="Nome" required
+          />
+          <button type="reset">Clear</button>
+        </p>
+      </section>
+    </fieldset>
+
+    <fieldset>
+      <legend>Séries</legend>
+      <section>
+        <p>
+          <input class="data-exercise-sets" 
+            type="number" placeholder="Séries" required
+          />
+          <button type="reset">Clear</button>
+        </p>
+      </section>
+    </fieldset>
+
+    <fieldset>
+      <legend>Rep.</legend>
+      <section>
+        <p>
+          <input class="data-exercise-repetitions" 
+            type="text" placeholder="Repeticoes" required
+            pattern="[A-Za-z0-9]*" 
+            title="Repetições podem conter letras e numeros"
+          />
+          <button type="reset">Clear</button>
+        </p>
+      </section>
+    </fieldset>
+    <div>
+      <button class="action-icon danger remove-exercise">Remover</button>
+    </div>
+  </div>
+  <script src="js/model.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{ 
+	"name": "Marcelo Rocha",
+	"description": "Este app te ajuda a controlar o seus treinos e ser saudavel!",
+	"launch_path": "/index.html",
+	"permissions": {
+        "storage": {
+            "description": "Requerido para armazenamento e obtenção de treinos."
+        }
+    },
+	"developer": {
+	 	"name": "Marcelo Rocha",
+		"url": "http://omarcelo.com.br" 
+	}, 
+	"icons": { 
+		"16": "/img/icon16.png",
+		"32": "/img/icon32.png" 
+	}
+}
