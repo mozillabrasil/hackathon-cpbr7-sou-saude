@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="style/action_menu.css">
         <link rel="stylesheet" href="style/buttons.css">
         <link rel="stylesheet" href="style/confirm.css">
-        <link rel="stylesheet" href="style/edit_mode.css">
         <link rel="stylesheet" href="style/headers.css">
         <link rel="stylesheet" href="style/input_areas.css">
         <link rel="stylesheet" href="style/status.css">
@@ -38,6 +37,11 @@
         <link rel="stylesheet" href="cross_browser.css">
 
         <script src="js/jquery-1.10.2.min.js"></script>
+          <script src="js/entity.js"></script>
+          <script src="js/model.js"></script>
+          <script src="js/db.js"></script>
+          <script src="js/app.js"></script>
+          <script src="js/helpers.js"></script>
         <style>
         #workout-list {
           height: 100%;
@@ -223,7 +227,7 @@
         <p>
           <input class="data-exercise-repetitions" 
             type="text" placeholder="Repeticoes" required
-            pattern="[A-Za-z0-9]*" 
+            pattern="[-A-Za-z0-9]*" 
             title="Repetições podem conter letras e numeros"
           />
           <button type="reset">Clear</button>
@@ -234,8 +238,5 @@
       <button class="action-icon danger remove-exercise">Remover</button>
     </div>
   </div>
-  <script src="js/model.js"></script>
-  <script src="js/db.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>
